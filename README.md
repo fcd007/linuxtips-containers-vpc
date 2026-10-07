@@ -98,6 +98,9 @@ Antes de executar este projeto, certifique-se de ter:
 | --- | --- | --- | --- |
 | project_name | Nome do projeto usado nos recursos | string | linuxtips-vpc |
 | region | Região da AWS onde os recursos serão criados | string | us-east-2 |
+| environment | Ambiente usado na tag `environment` | string | Obrigatório |
+
+O provider AWS aplica as tags comuns `finops = "true"` e `environment = var.environment` aos recursos compatíveis. As tags `Name` específicas de cada recurso são mantidas. Configure `environment` no arquivo `terraform.tfvars` de cada ambiente (por exemplo, `dev`, `hom` ou `prod`).
 
 ## Outputs
 
@@ -149,4 +152,5 @@ O repositório já contém a estrutura para ambientes de desenvolvimento, homolo
 
 - Este projeto é voltado para fins de laboratório e aprendizado.
 - Para uso em produção, recomenda-se revisar políticas de acesso, tagging, segurança e redundância.
+- Para visualizar os custos agrupados por essas tags, ative `finops` e `environment` como tags de alocação de custos definidas pelo usuário em AWS Billing and Cost Management. A ativação não é retroativa e os dados podem levar algum tempo para aparecer.
 - O backend remoto deve ser configurado corretamente antes de aplicar alterações.
